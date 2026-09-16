@@ -38,7 +38,7 @@ h=open(p,encoding='utf-8').read()
 h2=re.sub(r'\n?<!-- ITEM:%s -->.*?<!-- /ITEM:%s -->\n?'%(i,i),'\n',h,flags=re.S)
 open(p,'w',encoding='utf-8').write(h2)
 PY
-          echo "已刪除 $id（$f）"; found=1
+          echo "已刪除 ${id} -> ${f}"; found=1
         fi
       done
       [ $found -eq 1 ] || { echo "找不到項目 id: $id"; exit 1; }
