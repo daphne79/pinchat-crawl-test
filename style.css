@@ -1,0 +1,18 @@
+:root { --bg:#fbfbf9; --fg:#1c1b19; --muted:#6b6862; --line:#e4e1da; --accent:#2f6f5e; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,"PingFang TC","Noto Sans TC",system-ui,sans-serif; line-height:1.7; }
+.wrap { max-width:760px; margin:0 auto; padding:40px 20px 80px; }
+header.site { border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:32px; }
+header.site h1 { font-size:22px; margin:0 0 8px; }
+nav a { color:var(--accent); text-decoration:none; margin-right:16px; font-size:15px; }
+nav a:hover { text-decoration:underline; }
+h2 { font-size:19px; margin:36px 0 4px; }
+.lead { color:var(--muted); margin:0 0 24px; font-size:15px; }
+.item { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:0 0 14px; background:#fff; }
+.item h3 { margin:0 0 6px; font-size:17px; }
+.item .price { color:var(--accent); font-weight:600; font-size:16px; }
+.item p { margin:6px 0 0; color:var(--muted); font-size:15px; }
+.meta { font-size:13px; color:var(--muted); }
+footer { margin-top:56px; border-top:1px solid var(--line); padding-top:16px; font-size:13px; color:var(--muted); }
+code { background:#f0efea; padding:2px 5px; border-radius:4px; font-size:13px; }
