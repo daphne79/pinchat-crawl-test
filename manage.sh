@@ -10,7 +10,7 @@ cmd="${1:-list}"; shift || true
 
 case "$cmd" in
   list)
-    for f in products.html faq.html news.html; do
+    for f in docs/products.html docs/faq.html docs/news.html; do
       echo "== $f"
       grep -o '<!-- ITEM:[a-z0-9-]* -->' "$f" | sed 's/<!-- ITEM:/  /; s/ -->//' | while read -r id; do
         title=$(python3 - "$f" "$id" <<'PY'
@@ -29,7 +29,7 @@ PY
     [ $# -gt 0 ] || { echo "用法: ./manage.sh rm <item-id> [...]"; exit 1; }
     for id in "$@"; do
       found=0
-      for f in products.html faq.html news.html; do
+      for f in docs/products.html docs/faq.html docs/news.html; do
         if grep -q "<!-- ITEM:$id -->" "$f"; then
           python3 - "$f" "$id" <<'PY'
 import re,sys
@@ -47,7 +47,8 @@ PY
     echo "已推送，等 GitHub Pages 重新部署（約 30–60 秒）後再叫 bot 重爬。"
     ;;
   reset)
-    git checkout v1 -- index.html products.html faq.html news.html style.css
+    for f in products.html faq.html news.html; do git show "v1:$f" > "docs/$f"; done
+    git add -A
     if git diff --cached --quiet; then echo "已經是 baseline，無需變更"; else
       git commit -q -m "reset to baseline v1" && git push -q && echo "已還原 baseline 並推送。"
     fi

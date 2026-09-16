@@ -6,10 +6,10 @@
 ## 頁面
 | 頁面 | 內容 | 項目數 |
 |---|---|---|
-| `index.html` | 首頁 / 導覽 | — |
-| `products.html` | 商品價目表 | 8 |
-| `faq.html` | 常見問題 | 10 |
-| `news.html` | 最新公告 | 6 |
+| `docs/index.html` | 首頁 / 導覽（刻意不含任何實質內容） | — |
+| `docs/products.html` | 商品價目表 | 8 |
+| `docs/faq.html` | 常見問題 | 10 |
+| `docs/news.html` | 最新公告 | 6 |
 
 每個項目都用 `<!-- ITEM:id -->` … `<!-- /ITEM:id -->` 包住，可以整塊乾淨刪掉。
 
@@ -29,7 +29,11 @@ push 後 GitHub Pages 約 30–60 秒完成部署，再叫 bot 重爬。
 4. `./manage.sh reset` 還原後重爬，確認又找得到。
 
 ## 頁面層級的刪除測試
-若要測「整頁被刪」，直接 `git rm news.html && git commit && git push`，
-再用 `./manage.sh reset` 之外的方式復原（`git checkout v1 -- news.html`）。
+若要測「整頁被刪」，直接 `git rm docs/news.html && git commit && git push`，
+復原用 `git show v1:news.html > docs/news.html`。
 
 內容皆為虛構，僅供測試。
+
+## 注意
+GitHub Pages 只發佈 `docs/`，所以 README 與 `manage.sh` 不會被爬蟲抓到。
+`docs/index.html` 刻意不寫任何品項、數量或服務名稱 —— 否則刪掉 FAQ 後 bot 仍能從首頁旁證推出答案，測試就失準了。
